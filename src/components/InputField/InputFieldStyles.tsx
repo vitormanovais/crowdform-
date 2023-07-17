@@ -20,6 +20,10 @@ export const StyledInputContainer = styled.View`
   justify-content: space-between;
 `;
 
+export const StyledContainer = styled.View`
+  margin: 20px;
+`;
+
 export const StyledLabel = styled.Text`
   font-size: 11px;
   line-height: 14.33px;

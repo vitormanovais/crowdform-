@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {
+  StyledContainer,
   StyledInput,
   StyledInputContainer,
   StyledLabel,
 } from './InputFieldStyles';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import IconSvg from '../IconSvg';
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -27,7 +28,7 @@ const InputField: React.FC<InputFieldProps> = ({
   };
 
   return (
-    <>
+    <StyledContainer>
       <StyledLabel>{label}</StyledLabel>
       <StyledInputContainer>
         <StyledInput
@@ -40,14 +41,14 @@ const InputField: React.FC<InputFieldProps> = ({
         {password && (
           <TouchableOpacity onPress={handleTogglePasswordVisibility}>
             <IconSvg
-              name={showPassword ? 'openedEye' : 'closedEye'}
+              name={showPassword ? 'closedEye' : 'openedEye'}
               width={18.33}
               height={13.33}
             />
           </TouchableOpacity>
         )}
       </StyledInputContainer>
-    </>
+    </StyledContainer>
   );
 };
 

@@ -23,7 +23,9 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Header from './src/Header';
+import Header from './src/components/Header';
+import InputField from './src/components/InputField';
+import Button from './src/components/Button';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -64,28 +66,29 @@ function App(): JSX.Element {
 
   return (
     <SafeAreaView style={backgroundStyle}>
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={isDarkMode ? Colors.darker : Colors.lighter}
+      />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header text="Login" />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <Header text="Login" />
+          <InputField
+            label="E-mail"
+            placeholder="example@mail.com"
+            keyboardType="email-address"
+          />
+          <InputField
+            label="Password"
+            placeholder="Minimum 8 characters"
+            password
+          />
+          <Button title="Login" onPress={() => false} />
         </View>
       </ScrollView>
     </SafeAreaView>
