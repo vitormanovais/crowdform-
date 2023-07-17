@@ -4,7 +4,7 @@ interface HeaderProps {
   text: string;
 }
 
-const Header = ({text}: HeaderProps) => (
+const Header: React.FC<HeaderProps> = ({text}) => (
   <StyledContainer>
     <StyledText>{text}</StyledText>
   </StyledContainer>
