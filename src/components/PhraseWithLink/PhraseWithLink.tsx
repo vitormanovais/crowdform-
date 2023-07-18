@@ -21,15 +21,15 @@ const PhraseWithAction: React.FC<PhraseWithActionProps> = ({
     const elements = parts.map((part, index) => {
       if (index === parts.length - 1) {
         return (
-          <>
-            <StyledText key={index}>{part}</StyledText>
+          <React.Fragment key={`part-${index}`}>
+            <StyledText>{part}</StyledText>
             <StyledTouchableOpacity onPress={handlePress}>
               <StyledHiperlink>{tagAction}</StyledHiperlink>
             </StyledTouchableOpacity>
-          </>
+          </React.Fragment>
         );
       } else {
-        return <Text key={index}>{part}</Text>;
+        return <Text key={`part-${index}`}>{part}</Text>;
       }
     });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react-native';
+import {render, fireEvent, act} from '@testing-library/react-native';
 import PhraseWithLink from './PhraseWithLink';
 
 describe('PhraseWithLink', () => {
@@ -13,9 +13,10 @@ describe('PhraseWithLink', () => {
         onPress={navigateMocked}
       />,
     );
-
-    const linkElement = getByText('Sign up here');
-    fireEvent.press(linkElement);
+    act(() => {
+      const linkElement = getByText('Sign up here');
+      fireEvent.press(linkElement);
+    });
 
     expect(navigateMocked).toHaveBeenCalledTimes(1);
   });

@@ -61,11 +61,7 @@ const Login: React.FC = () => {
               password
               onChange={handleChange('password')}
             />
-            <Button
-              title="Login"
-              onPress={handleSubmit}
-              disabled={Object.keys(errors).length > 0}
-            />
+            <Button title="Login" onPress={handleSubmit} testId="loginButton" />
             <PhraseWithLink
               text={'Don’t have an account? Sign up here'}
               tagAction={'Sign up here'}

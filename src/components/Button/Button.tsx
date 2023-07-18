@@ -5,10 +5,16 @@ interface HeaderProps {
   title: string;
   disabled?: boolean;
   onPress: () => void;
+  testId?: string;
 }
 
-const Button: React.FC<HeaderProps> = ({title, disabled = false, onPress}) => (
-  <StyledContainer disabled={disabled} onPress={onPress}>
+const Button: React.FC<HeaderProps> = ({
+  title,
+  disabled = false,
+  onPress,
+  testId,
+}) => (
+  <StyledContainer disabled={disabled} onPress={onPress} testID={testId}>
     <StyledText>{title}</StyledText>
   </StyledContainer>
 );

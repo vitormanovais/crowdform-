@@ -40,14 +40,15 @@ const InputField: React.FC<InputFieldProps> = ({
           value={state}
           placeholder={error ? error : placeholder}
           onChangeText={handleTextChange}
-          placeholderTextColor={'#cfcfcf;'}
+          placeholderTextColor={error ? '#ff0000' : '#cfcfcf'}
         />
         {password && (
           <TouchableOpacity onPress={handleTogglePasswordVisibility}>
             <IconSvg
-              name={showPassword ? 'closedEye' : 'openedEye'}
+              name={!showPassword ? 'closedEye' : 'openedEye'}
               width={18.33}
               height={13.33}
+              color={error ? '#ff0000' : '#cfcfcf'}
             />
           </TouchableOpacity>
         )}

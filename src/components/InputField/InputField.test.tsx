@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react-native';
+import {act, fireEvent, render} from '@testing-library/react-native';
 import InputField from './index';
 
 describe('InputField component', () => {
@@ -34,10 +34,11 @@ describe('InputField component', () => {
         onChange={handleChange}
       />,
     );
+    act(() => {
+      const input = getByPlaceholderText('Enter text');
 
-    const input = getByPlaceholderText('Enter text');
-
-    fireEvent.changeText(input, textInput);
+      fireEvent.changeText(input, textInput);
+    });
     expect(handleChange).toHaveBeenCalledWith(textInput);
   });
 });
