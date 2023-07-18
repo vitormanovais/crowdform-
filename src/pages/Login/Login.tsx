@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import Header from '../../components/Header';
 import {StyledContainer} from './LoginStyles';
 import {useNavigation} from '@react-navigation/native';
+import PhraseWithLink from '../../components/PhraseWithLink/PhraseWithLink';
 
 const Login: React.FC = () => {
   const navigation = useNavigation();
@@ -64,6 +65,11 @@ const Login: React.FC = () => {
               title="Login"
               onPress={handleSubmit}
               disabled={Object.keys(errors).length > 0}
+            />
+            <PhraseWithLink
+              text={'Don’t have an account? Sign up here'}
+              tagAction={'Sign up here'}
+              onPress={() => navigation.navigate('SignUp')}
             />
           </>
         )}
