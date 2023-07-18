@@ -10,7 +10,6 @@ export const StyledText = styled.Text`
 export const StyledContainer = styled.View`
   padding-top: 20px;
   padding-bottom: 34px;
-  flex: 1;
   align-items: center;
   justify-content: center;
   margin: 20px;

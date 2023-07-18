@@ -1,10 +1,11 @@
 interface InputFieldProps {
-    label: string;
+    label?: string;
     value?: string;
     placeholder?: string;
     keyboardType?: keyboardType;
     onChange?: (text: string) => void;
     password?: boolean
+    error?: boolean
   }
   type keyboardType = 'default'|
   'numeric'|
