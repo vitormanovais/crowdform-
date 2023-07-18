@@ -3,9 +3,6 @@ import styled from 'styled-components/native';
 export const StyledInput = styled.TextInput<{error: boolean}>`
   background-color: #f4f4f4;
   color: ${props => (props.error ? '#ff0000' : '#000000')};
-  ::placeholder {
-    color: #cfcfcf;
-  }
 `;
 
 export const StyledInputContainer = styled.View<{error: boolean}>`

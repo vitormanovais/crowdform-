@@ -16,16 +16,16 @@ const SignUp: React.FC = () => {
     const errors: Partial<LoginValues> = {};
 
     if (!values.firstName) {
-      errors.firstName = 'Required field';
+      errors.firstName = 'Invalid name';
     }
     if (!values.lastName) {
-      errors.lastName = 'Required field';
+      errors.lastName = 'Invalid last name';
     }
     if (!values.email) {
-      errors.email = 'Required field';
+      errors.email = 'Invalid email';
     }
     if (!values.password) {
-      errors.password = 'Required field';
+      errors.password = 'Invalid password';
     }
     if (!values.termsAndPrivacy) {
       errors.termsAndPrivacy = false;
@@ -50,21 +50,21 @@ const SignUp: React.FC = () => {
           }: FormikProps<LoginValues>) => (
             <>
               <InputField
-                error={!!errors.firstName}
+                error={errors.firstName}
                 label="First Name"
                 placeholder="name"
                 value={values.firstName}
                 onChange={handleChange('firstName')}
               />
               <InputField
-                error={!!errors.lastName}
+                error={errors.lastName}
                 label="Last Name"
                 placeholder="last name"
                 value={values.lastName}
                 onChange={handleChange('lastName')}
               />
               <InputField
-                error={!!errors.email}
+                error={errors.email}
                 label="E-mail"
                 placeholder="example@mail.com"
                 keyboardType="email-address"
@@ -72,7 +72,7 @@ const SignUp: React.FC = () => {
                 onChange={handleChange('email')}
               />
               <InputField
-                error={!!errors.password}
+                error={errors.password}
                 label="Password"
                 placeholder="Minimum 8 characters"
                 value={values.password}

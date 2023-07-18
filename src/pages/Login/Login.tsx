@@ -20,11 +20,11 @@ const Login: React.FC = () => {
     const errors: Partial<LoginValues> = {};
 
     if (!values.email) {
-      errors.email = 'Required field';
+      errors.email = 'Invalid email';
     }
 
     if (!values.password) {
-      errors.password = 'Required field';
+      errors.password = 'Invalid password';
     }
 
     return errors;
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
         }: FormikProps<LoginValues>) => (
           <>
             <InputField
-              error={!!errors.email}
+              error={errors.email}
               label="E-mail"
               placeholder="example@mail.com"
               keyboardType="email-address"
@@ -53,7 +53,7 @@ const Login: React.FC = () => {
               onChange={handleChange('email')}
             />
             <InputField
-              error={!!errors.password}
+              error={errors.password}
               label="Password"
               placeholder="Minimum 8 characters"
               value={values.password}
