@@ -5,10 +5,15 @@ import InputField from '../../components/InputField';
 import {LoginValues} from './types';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
+import {StyledContainer} from './LoginStyles';
+import {useNavigation} from '@react-navigation/native';
 
 const Login: React.FC = () => {
+  const navigation = useNavigation();
+
   const handleLogin = (values: LoginValues) => {
     console.log('Login realizado com sucesso!', values);
+    navigation.navigate('SignUp');
   };
 
   const validade = (values: LoginValues) => {
@@ -26,7 +31,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <StyledContainer>
       <Header text="Login" />
       <Formik
         initialValues={{email: '', password: ''}}
@@ -63,30 +68,8 @@ const Login: React.FC = () => {
           </>
         )}
       </Formik>
-    </View>
+    </StyledContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  input: {
-    width: '100%',
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 4,
-    marginBottom: 16,
-    paddingLeft: 10,
-  },
-  errorText: {
-    color: 'red',
-    marginBottom: 8,
-  },
-});
 
 export default Login;

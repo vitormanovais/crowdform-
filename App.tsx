@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import Login from './src/pages/Login';
+import RootNavigator from './src/pages/routes';
 
 const App: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Login />
+      <RootNavigator />
     </View>
   );
 };

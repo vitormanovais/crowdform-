@@ -22,7 +22,6 @@ export const StyledInputContainer = styled.View<{error: boolean}>`
 `;
 
 export const StyledContainer = styled.View`
-  width: 100%;
   margin: 20px;
 `;
 
