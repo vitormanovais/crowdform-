@@ -15,6 +15,7 @@ const InputField: React.FC<InputFieldProps> = ({
   keyboardType,
   onChange,
   password,
+  error = false,
 }) => {
   const [state, setState] = useState<string>(value ?? '');
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -24,15 +25,17 @@ const InputField: React.FC<InputFieldProps> = ({
   };
 
   const handleTextChange = (text: string) => {
-    onChange ? onChange(text) : setState(text);
+    onChange && onChange(text);
+    setState(text);
   };
 
   return (
     <StyledContainer>
-      <StyledLabel>{label}</StyledLabel>
-      <StyledInputContainer>
+      {label && <StyledLabel error={error}>{label}</StyledLabel>}
+      <StyledInputContainer error={error}>
         <StyledInput
-          secureTextEntry={showPassword}
+          error={error}
+          secureTextEntry={!showPassword}
           keyboardType={keyboardType}
           value={state}
           placeholder={placeholder}
