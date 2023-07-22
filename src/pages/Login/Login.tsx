@@ -8,13 +8,33 @@ import Header from '../../components/Header';
 import {StyledContainer} from './LoginStyles';
 import {useNavigation} from '@react-navigation/native';
 import PhraseWithLink from '../../components/PhraseWithLink/PhraseWithLink';
+import {useDispatch, useSelector} from 'react-redux';
+import userActions from '../../contexts/redux/user/actions';
+import {ReduxType} from '../../contexts/redux/type';
+import {User} from '../../contexts/redux/user/types';
 
 const Login: React.FC = () => {
   const navigation = useNavigation();
+  const {users} = useSelector((state: ReduxType) => state.user.accounts);
+
+  console.log(users);
+  const dispatch = useDispatch();
 
   const handleLogin = (values: LoginValues) => {
-    console.log('Login realizado com sucesso!', values);
-    navigation.navigate('SignUp');
+    const hasUser = users.find(
+      (account: User) => account.email === values.email,
+    );
+    if (hasUser) {
+      if (hasUser.password === values.password) {
+        dispatch(userActions.login(hasUser));
+        console.log('userLogged', hasUser);
+      } else {
+        console.log('senha errada');
+        navigation.navigate('SignUp');
+      }
+    } else {
+      console.log('usuario nao encontrado');
+    }
   };
 
   const validade = (values: LoginValues) => {
