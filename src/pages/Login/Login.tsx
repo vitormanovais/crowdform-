@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Formik, FormikProps} from 'formik';
 import InputField from '../../components/InputField';
 import {LoginValues} from './types';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
-import {StyledContainer} from './LoginStyles';
+import {StyledContainer, StyledTextError} from './LoginStyles';
 import {useNavigation} from '@react-navigation/native';
 import PhraseWithLink from '../../components/PhraseWithLink/PhraseWithLink';
 import {useDispatch, useSelector} from 'react-redux';
@@ -14,11 +14,13 @@ import {ReduxType} from '../../contexts/redux/type';
 import {User} from '../../contexts/redux/user/types';
 
 const Login: React.FC = () => {
-  const navigation = useNavigation();
   const {users} = useSelector((state: ReduxType) => state.user.accounts);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const [logingError, setLogingError] = useState<string | false>(false);
 
   console.log(users);
-  const dispatch = useDispatch();
 
   const handleLogin = (values: LoginValues) => {
     const hasUser = users.find(
@@ -29,11 +31,10 @@ const Login: React.FC = () => {
         dispatch(userActions.login(hasUser));
         console.log('userLogged', hasUser);
       } else {
-        console.log('senha errada');
-        navigation.navigate('SignUp');
+        setLogingError('Wrong password');
       }
     } else {
-      console.log('usuario nao encontrado');
+      setLogingError('User not found');
     }
   };
 
@@ -41,11 +42,11 @@ const Login: React.FC = () => {
     const errors: Partial<LoginValues> = {};
 
     if (!values.email) {
-      errors.email = 'Invalid email';
+      errors.email = 'Please insert your email';
     }
 
     if (!values.password) {
-      errors.password = 'Invalid password';
+      errors.password = 'Please insert your password';
     }
 
     return errors;
@@ -87,6 +88,7 @@ const Login: React.FC = () => {
               tagAction={'Sign up here'}
               onPress={() => navigation.navigate('SignUp')}
             />
+            {logingError && <StyledTextError>{logingError}</StyledTextError>}
           </>
         )}
       </Formik>
